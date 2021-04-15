@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Inlämning.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Inlämning
 {
@@ -29,7 +30,8 @@ namespace Inlämning
             services.AddDbContext<InlämningContext>(options =>
                    options.UseSqlServer(Configuration.GetConnectionString("CS")));
 
-            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<InlämningContext>();
+
 
         }
 
@@ -48,11 +50,15 @@ namespace Inlämning
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {

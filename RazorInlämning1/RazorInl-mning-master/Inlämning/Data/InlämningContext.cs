@@ -1,13 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Inlämning.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Inlämning.Data
 {
-    public class InlämningContext : DbContext
+    public class InlämningContext : IdentityDbContext<IdentityUser>
     {
 
         public InlämningContext(DbContextOptions<InlämningContext> options)
