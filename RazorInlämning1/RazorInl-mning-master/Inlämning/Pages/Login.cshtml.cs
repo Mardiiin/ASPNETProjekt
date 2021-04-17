@@ -39,6 +39,7 @@ namespace Inlämning.Pages
                 if (LoginUser.UserName == null || LoginUser.Password == null)
                 {
                   Message = "Empty fields!" ;
+                  return Page();
                 }
 
 
