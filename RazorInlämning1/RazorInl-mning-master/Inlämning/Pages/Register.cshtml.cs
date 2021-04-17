@@ -11,19 +11,25 @@ namespace Inlämning.Pages
     public class RegisterModel : PageModel
 
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        
+        private readonly UserManager<IdentityUser> _UserManager;
 
-        public RegisterModel(SignInManager<IdentityUser> signInManager)
+        public RegisterModel(UserManager<IdentityUser> UserInManager)
         {
-            _signInManager = signInManager;
+            _UserManager = UserInManager;
         }
 
 
-        public class LoginUserForm
+        [BindProperty]
+
+        public NewUserForm  NewUser {get; set;}
+        public class NewUserForm
         {
             public string UserName { get; set; }
             public string Password { get; set; }
         }
+
+        public string Message { get; set; }
 
         public void OnGet()
         {
@@ -31,7 +37,43 @@ namespace Inlämning.Pages
 
         public async Task<IActionResult> OnPost()
         {
-        
+
+            
+
+
+
+            IdentityUser newUser = new IdentityUser()
+            {
+                UserName = NewUser.UserName,
+
+            };
+
+            if (NewUser.UserName == null || NewUser.Password == null)
+            {
+                Message = "Empty fields!";
+                return Page();
+            }
+
+            if(NewUser.UserName != null || NewUser.Password != null) { 
+
+
+            // måste ha minst en stor bokstav, min length-7 , !"#¤%&/ minst ett sådan tecken.
+            var result = await _UserManager.CreateAsync(newUser, NewUser.Password);
+
+            if (result.Succeeded)
+            {
+                return RedirectToPage("/index");
+            }
+            else if (result.Succeeded == false)
+            {
+                    Message = "Password or Username dident work!";
+            }
+
+
+
+
+            }
+
             return Page();
         }
     }
