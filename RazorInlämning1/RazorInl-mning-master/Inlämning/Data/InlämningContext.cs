@@ -27,7 +27,7 @@ namespace Inlämning.Data
 
             if (Events.Any() ||
                Attendees.Any() ||
-                Organizers.Any())
+               Organizers.Any())
             {
                 return;
             }
