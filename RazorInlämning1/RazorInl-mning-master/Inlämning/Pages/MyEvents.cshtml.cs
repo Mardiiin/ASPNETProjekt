@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Inlämning.Data;
 using Inlämning.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Inlämning.Pages
 {
+    [Authorize]
     public class MyEventsModel : PageModel
     {
+        
         private readonly Inlämning.Data.InlämningContext _context;
 
         public MyEventsModel(Inlämning.Data.InlämningContext context)
