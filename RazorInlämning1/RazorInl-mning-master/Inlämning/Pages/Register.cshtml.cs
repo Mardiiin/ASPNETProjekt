@@ -33,13 +33,11 @@ namespace Inlämning.Pages
 
         public void OnGet()
         {
+
         }
 
         public async Task<IActionResult> OnPost()
         {
-
-            
-
 
 
             IdentityUser newUser = new IdentityUser()
@@ -68,9 +66,6 @@ namespace Inlämning.Pages
             {
                     Message = "Password or Username dident work!";
             }
-
-
-
 
             }
 
