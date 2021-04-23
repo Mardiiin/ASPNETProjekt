@@ -14,9 +14,9 @@ namespace Inlämning.Pages
     [Authorize]
     public class EventJoinModel : PageModel
     {
-        private readonly Inlämning.Data.InlämningContext _context;
+        private readonly InlämningContext _context;
 
-        public EventJoinModel(Inlämning.Data.InlämningContext context)
+        public EventJoinModel(InlämningContext context)
         {
             _context = context;
         }
@@ -27,16 +27,18 @@ namespace Inlämning.Pages
         public Event AddEvent { get; set; }
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-
-            var attendee = await _context.Attendees.Where(a => a.AttendeeID == 1).Include(e => e.Events).FirstOrDefaultAsync();
+            
+           // var User = await _context.Users.Where(a => a.UserName == id.ToString()).Include(e => e.Events).FirstOrDefaultAsync();
 
             var Joinedevent = await _context.Events.Where(e => e.EventID == id).FirstOrDefaultAsync();
 
             Joinedevent.SpotsAvailable--;
 
-            attendee.Events.Add(Joinedevent);
+            //User.Events.Add(Joinedevent);
             await _context.SaveChangesAsync();
+            
             return RedirectToPage("/MyEvents", $"You have joined this event. {Joinedevent.Title} see you there!");
+
 
         }
 

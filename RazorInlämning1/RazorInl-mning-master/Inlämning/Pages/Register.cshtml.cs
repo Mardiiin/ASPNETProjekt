@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Inlämning.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,9 +13,9 @@ namespace Inlämning.Pages
 
     {
         
-        private readonly UserManager<IdentityUser> _UserManager;
+        private readonly UserManager<User> _UserManager;
 
-        public RegisterModel(UserManager<IdentityUser> UserInManager)
+        public RegisterModel(UserManager<User> UserInManager)
         {
             _UserManager = UserInManager;
         }
@@ -40,7 +41,7 @@ namespace Inlämning.Pages
         {
 
 
-            IdentityUser newUser = new IdentityUser()
+            User newUser = new User()
             {
                 UserName = NewUser.UserName,
 
@@ -69,7 +70,7 @@ namespace Inlämning.Pages
 
             }
 
-            return Page();
+            return RedirectToPage("/Index");
         }
     }
 }

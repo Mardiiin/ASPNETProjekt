@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Inlämning.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Inlämning.Models;
 
 namespace Inlämning
 {
@@ -30,7 +31,7 @@ namespace Inlämning
             services.AddDbContext<InlämningContext>(options =>
                    options.UseSqlServer(Configuration.GetConnectionString("CS")));
 
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<InlämningContext>();
+            services.AddDefaultIdentity<User>().AddEntityFrameworkStores<InlämningContext>();
 
 
         }
