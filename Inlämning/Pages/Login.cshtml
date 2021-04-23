@@ -1,0 +1,33 @@
+﻿@page
+@model Inlämning.Pages.LoginModel
+@{
+}
+
+<div class="text-center">
+
+    <form method="post">
+        <h2>Log in</h2>
+
+        <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label">Username</label>
+            <input asp-for="LoginUser.UserName" type="text" class="form-control" id="formGroupExampleInput" placeholder="...">
+        </div>
+
+        <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label">Password</label>
+            <input asp-for="LoginUser.Password" type="text" class="form-control" id="formGroupExampleInput2" placeholder="...">
+        </div>
+
+        <input type="submit" class="btn-primary" />
+
+    </form>
+
+    <div class="alert-warning">
+        <h2>@Model.Message</h2>
+    </div>
+ 
+
+</div>
+
+
+
