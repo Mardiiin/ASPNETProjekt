@@ -23,12 +23,11 @@ namespace Inlämning.Pages
         }
 
         public IList<Event> Event { get; set; }
-        public Attendee Attendee { get; set; }
         public string Message { get; set; }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-
+            /*
             var attendee = await _context.Attendees.Where(a => a.AttendeeID == 1).Include(e => e.Events).FirstOrDefaultAsync();
 
             var leaveEvent = await _context.Events.Where(e => e.EventID == id).FirstOrDefaultAsync();
@@ -37,17 +36,19 @@ namespace Inlämning.Pages
 
             attendee.Events.Remove(leaveEvent);
             await _context.SaveChangesAsync();
-            return RedirectToPage($"/MyEvents", $"You have left the event: {leaveEvent.Title}");
-
+            */
+            return RedirectToPage($"/MyEvents", $"You have left the event: ");
+            
         }
         public void OnGetAsync(string handler = "")
         {
+            /*
             Attendee = _context.Attendees.Where(a => a.AttendeeID == 1).Include(e => e.Events).FirstOrDefault();
 
             Message = handler;
 
             Event = Attendee.Events;
-
+            */
 
         }
     }

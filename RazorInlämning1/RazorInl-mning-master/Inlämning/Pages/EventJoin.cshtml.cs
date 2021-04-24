@@ -27,7 +27,7 @@ namespace Inlämning.Pages
         public Event AddEvent { get; set; }
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-
+            /*
             var attendee = await _context.Attendees.Where(a => a.AttendeeID == 1).Include(e => e.Events).FirstOrDefaultAsync();
 
             var Joinedevent = await _context.Events.Where(e => e.EventID == id).FirstOrDefaultAsync();
@@ -36,7 +36,8 @@ namespace Inlämning.Pages
 
             attendee.Events.Add(Joinedevent);
             await _context.SaveChangesAsync();
-            return RedirectToPage("/MyEvents", $"You have joined this event. {Joinedevent.Title} see you there!");
+            */
+            return RedirectToPage("/MyEvents", $"You have joined this event.  see you there!");
 
         }
 
