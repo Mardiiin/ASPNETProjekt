@@ -8,35 +8,34 @@ using Microsoft.EntityFrameworkCore;
 using Inlämning.Data;
 using Inlämning.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Inlämning.Pages
 {
     [Authorize]
     public class EventJoinModel : PageModel
     {
-        private readonly Inlämning.Data.InlämningContext _context;
-
-        public EventJoinModel(Inlämning.Data.InlämningContext context)
+        private readonly InlämningContext _context;
+        private readonly UserManager<User> _userManager;
+        public EventJoinModel(InlämningContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public Event Event { get; set; }
+
+        public User _User { get; set; }
 
         [BindProperty]
         public Event AddEvent { get; set; }
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            /*
-            var attendee = await _context.Attendees.Where(a => a.AttendeeID == 1).Include(e => e.Events).FirstOrDefaultAsync();
 
-            var Joinedevent = await _context.Events.Where(e => e.EventID == id).FirstOrDefaultAsync();
 
-            Joinedevent.SpotsAvailable--;
+     
+   
 
-            attendee.Events.Add(Joinedevent);
-            await _context.SaveChangesAsync();
-            */
             return RedirectToPage("/MyEvents", $"You have joined this event.  see you there!");
 
         }
@@ -49,8 +48,7 @@ namespace Inlämning.Pages
                 return NotFound();
             }
 
-            Event = await _context.Events
-                .Include(o => o.Organizer).FirstOrDefaultAsync(m => m.EventID == id);
+            Event = await _context.Events.Include(o => o.Organizer).FirstOrDefaultAsync(m => m.Id == id);
 
             if (Event == null)
             {

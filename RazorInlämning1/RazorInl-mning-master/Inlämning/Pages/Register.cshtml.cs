@@ -18,6 +18,7 @@ namespace Inlämning.Pages
         public RegisterModel(UserManager<User> UserInManager)
         {
             _UserManager = UserInManager;
+            
         }
 
 
@@ -44,8 +45,10 @@ namespace Inlämning.Pages
             User newUser = new User()
             {
                 UserName = NewUser.UserName,
-
+                
             };
+
+             
 
             if (NewUser.UserName == null || NewUser.Password == null)
             {
@@ -58,10 +61,12 @@ namespace Inlämning.Pages
 
             // måste ha minst en stor bokstav, min length-7 , !"#¤%&/ minst ett sådan tecken.
             var result = await _UserManager.CreateAsync(newUser, NewUser.Password);
+                
 
-            if (result.Succeeded)
+                if (result.Succeeded)
             {
-                return RedirectToPage("/index");
+                    await _UserManager.AddToRoleAsync(newUser, "Attendee");
+                    return RedirectToPage("/index");
             }
             else if (result.Succeeded == false)
             {

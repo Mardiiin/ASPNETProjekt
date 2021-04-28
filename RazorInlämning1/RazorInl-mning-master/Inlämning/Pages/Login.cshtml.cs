@@ -13,10 +13,11 @@ namespace Inlämning.Pages
     {
 
         private readonly SignInManager<User> _signInManager;
-
-        public LoginModel(SignInManager<User> signInManager)
+        
+        public LoginModel(SignInManager<User> signInManager,RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
+           
         }
 
         [BindProperty]
@@ -49,8 +50,10 @@ namespace Inlämning.Pages
                 var loginResult = await _signInManager.PasswordSignInAsync(LoginUser.UserName, LoginUser.Password, false, false);
 
 
+
                 if (loginResult.Succeeded)
                 {
+                   
                     return RedirectToPage("/index");
                 }
                 else

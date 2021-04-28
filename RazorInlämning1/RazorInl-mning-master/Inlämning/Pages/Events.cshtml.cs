@@ -25,8 +25,8 @@ namespace Inlämning.Pages
 
         public async Task OnGetAsync()
         {
-            Event = await _context.Events
-                .Include(o => o.Organizer).ToListAsync();
+            Event = await _context.Events.Include(o => o.Organizer).ToListAsync();
+            
         }
     }
 }

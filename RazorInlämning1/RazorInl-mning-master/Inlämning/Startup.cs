@@ -32,9 +32,26 @@ namespace Inlämning
             services.AddDbContext<InlämningContext>(options =>
                    options.UseSqlServer(Configuration.GetConnectionString("CS")));
 
-            services.AddDefaultIdentity<User>().AddEntityFrameworkStores<InlämningContext>();
 
-           
+
+
+            services.AddDefaultIdentity<User>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 7;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.SignIn.RequireConfirmedEmail = false;
+
+
+            })
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<InlämningContext>();
+                
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

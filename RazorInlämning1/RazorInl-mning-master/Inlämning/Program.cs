@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Inlämning.Data;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+using Inlämning.Models;
 
 namespace Inlämning
 {
@@ -30,8 +32,10 @@ namespace Inlämning
                 try
                 {
                     var context = services.GetRequiredService<InlämningContext>();
+                    var userManager = services.GetRequiredService<UserManager<User>>();
+                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     context.Database.EnsureCreated();
-                    context.Seeding();
+                    context.Seeding(userManager, roleManager).Wait();
                 }
                 catch (Exception ex)
                 {
