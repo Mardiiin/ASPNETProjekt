@@ -1,0 +1,41 @@
+﻿@page
+@model Inlämning.Pages.Organizer.AddEventModel
+@{
+}
+
+<div class="text-center">
+
+    
+    <form method="post">
+        <table class="table">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Adress</th>
+                <th scope="col">How many spots?</th>
+                <th scope="col">Date</th>
+                <th scope="col">Place</th>
+               
+            </tr>
+            <tr>
+                <td> <input asp-for="Events.Title" type="text" class="form-control" placeholder="..."></td>
+                <td> <input asp-for="Events.Address" type="text" class="form-control" placeholder="..."></td>
+                <td> <input asp-for="Events.SpotsAvailable" type="text" class="form-control" placeholder="..."></td>
+                <td> <input asp-for="Events.Date" type="text" class="form-control" placeholder="..."></td>
+                <td> <input asp-for="Events.Place" type="text" class="form-control" placeholder=""></td>
+                   
+            </tr>
+        </table>
+        <div>
+            <label for="Description"> Description</label>
+        </div>
+        <div>
+            <input id="Description" type="text" class="form-control" asp-for="Events.Description">
+        </div>
+
+        <div>
+            <input type="submit" class="btn-primary" />
+        </div>
+
+    </form>
+</div>
+
