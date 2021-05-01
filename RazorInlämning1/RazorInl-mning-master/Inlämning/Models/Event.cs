@@ -15,11 +15,7 @@ namespace Inlämning.Models
         public string Place { get; set; }
         public DateTime Date { get; set; }
         public int SpotsAvailable { get; set; }
-
-        [InverseProperty("JoinedEvents")]
         public List<User> Attendees { get; set; }
-
-        [InverseProperty("HostedEvents")]
         public User Organizer { get; set; }
 
 

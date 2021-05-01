@@ -6,12 +6,15 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Inlämning.Data;
 using Inlämning.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
+
 namespace Inlämning.Pages.Organizer
 {
+    [Authorize]
     public class OrganizeEventsModel : PageModel
     {
         private readonly InlämningContext _context;

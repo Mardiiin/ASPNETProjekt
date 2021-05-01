@@ -16,9 +16,10 @@ namespace Inlämning.Models
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
-  
+
+        [InverseProperty("Attendees")]
         public List<Event> JoinedEvents { get; set; }
-       
+        [InverseProperty("Organizer")]
         public List<Event> HostedEvents { get; set; }
 
         public List<IdentityRole> Roles { get; set; }
