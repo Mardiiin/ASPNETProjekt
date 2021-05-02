@@ -29,6 +29,8 @@ namespace Inlämning.Pages.Organizer
         [BindProperty]
         public Event Events { get; set; }
 
+        [BindProperty]
+        public  string Message { get; set; }
 
         public void OnGet()
         {
@@ -55,11 +57,17 @@ namespace Inlämning.Pages.Organizer
                 Organizer = _userManager.Users.Where(o => o.UserName == UserName).FirstOrDefault(),
             };
 
-            _context.Events.Add(Events);
-            _context.SaveChanges();
+           
 
+           
+                _context.Events.Add(Events);
+                _context.SaveChanges();
+                Message = "Event created!";
+                return Page();
+            
+      
 
-            return Page();
+        
         }
     }
 }

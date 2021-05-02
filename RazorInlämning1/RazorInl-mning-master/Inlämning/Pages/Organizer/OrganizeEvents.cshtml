@@ -1,7 +1,9 @@
 ﻿@page
-@model Inlämning.Pages.Organizer.OrganizeEventsModel
+@model Inlämning.Pages.OrganizeEventsModel
 @{
+    ViewData["Title"] = "Events";
 }
+
 <h1>Events</h1>
 
 
@@ -57,11 +59,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.SpotsAvailable)
                 </td>
-                <td>
 
-                    <a asp-page="./EventJoin" asp-route-id="@item.Id">Join</a>
-                </td>
             </tr>
         }
     </tbody>
 </table>
+<div class="text-center">
+    <a type="button" asp-area="" asp-page="/Organizer/AddEvent" class="btn btn-primary btn-lg">Add Event</a>
+</div>

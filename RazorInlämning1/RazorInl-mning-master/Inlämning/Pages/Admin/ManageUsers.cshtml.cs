@@ -16,26 +16,27 @@ namespace Inlämning.Pages.Admin
     [Authorize]
     public class ManageUsersModel : PageModel
     {
-        private readonly InlämningContext _context;
+        
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly InlämningContext _context;
 
-
-        public ManageUsersModel(InlämningContext context, UserManager<User> userManager)
+        public ManageUsersModel( UserManager<User> userManager, RoleManager<IdentityRole> roleManager, InlämningContext context)
         {
             _context = context;
+            _roleManager = roleManager;
             _userManager = userManager;
         }
 
         [BindProperty]
+        public IList<User> Users { get; set; }
 
-        public IList<User> _Users { get; set; }
 
-        public IList<Event> Events { get; set; }
-
-        public void OnGet()
+        public  void OnGet()
         {
-            _Users =  _userManager.Users.ToList();
-            Events = _context.Events.ToList();
+            Users = _userManager.Users.Include().ToList();
+            
+
 
 
         }

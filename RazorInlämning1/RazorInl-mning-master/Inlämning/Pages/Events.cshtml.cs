@@ -14,9 +14,9 @@ namespace Inlämning.Pages
     [Authorize]
     public class EventsModel : PageModel
     {
-        private readonly Inlämning.Data.InlämningContext _context;
+        private readonly InlämningContext _context;
 
-        public EventsModel(Inlämning.Data.InlämningContext context)
+        public EventsModel(InlämningContext context)
         {
             _context = context;
         }
