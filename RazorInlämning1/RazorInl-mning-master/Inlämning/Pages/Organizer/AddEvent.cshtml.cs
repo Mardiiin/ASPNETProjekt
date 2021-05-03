@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Inlämning.Pages.Organizer
 {
-    [Authorize]
+    [Authorize(Roles = "Organizer")]
     public class AddEventModel : PageModel
     {
       

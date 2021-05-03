@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Inlämning.Pages.Admin
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ManageUsersModel : PageModel
     {
         

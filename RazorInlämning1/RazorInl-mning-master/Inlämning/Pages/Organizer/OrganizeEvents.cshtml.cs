@@ -12,7 +12,7 @@ using System.Security.Claims;
 
 namespace Inlämning.Pages
 {
-    [Authorize]
+    [Authorize(Roles = "Organizer")]
     public class OrganizeEventsModel : PageModel
     {
         private readonly InlämningContext _context;
