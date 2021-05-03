@@ -4,24 +4,75 @@
 }
 
 <div class="text-center">
-    <h1> ManageUsersModel!</h1>
-    <table class="table table-striped">
+    <div>
+        <div>
+            <h1>Attendees</h1>
+        </div>
+    </div>
+    <table class="table">
         <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>UserName</th>
+                <th>Id</th>
                 <th>Email</th>
-                <th>Roles</th>               
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Users)
+            @foreach (var item in Model.Attendee)
             {
                 <tr>
-                    <td>@item.FirstName</td>
-                    <td>@item.LastName</td>
+                    <td>@item.UserName</td>
+                    <td>@item.Id</td>
                     <td>@item.Email</td>
-                    <td>@string.Join(" , ", item.Roles.ToList())</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table> 
+    <div>
+        <h1>Organizer</h1>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Host</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Organizer)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.Id</td>
+                    <td>@item.Email</td>
+                    <td>@item.HostedEvents</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <h1> Admin</h1>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>UserName</th>
+                <th>Id</th>
+                <th>Email</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Admin)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.Id</td>
+                    <td>@item.Email</td>
+                    <td></td>
                 </tr>
             }
         </tbody>

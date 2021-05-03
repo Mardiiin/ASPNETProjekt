@@ -1,15 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using Inlämning.Data;
 using Inlämning.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace Inlämning.Pages.Admin
 {
@@ -28,16 +27,20 @@ namespace Inlämning.Pages.Admin
             _userManager = userManager;
         }
 
-        [BindProperty]
-        public IList<User> Users { get; set; }
+   
 
+        public IList<User> Attendee { get; set; }
+        public IList<User> Organizer { get; set; }
+        public IList<User> Admin { get; set; }
 
-        public  void OnGet()
+        public string Roles { get; set; }
+
+        public async Task OnGetAsync()
         {
-            Users = _userManager.Users.Include().ToList();
-            
 
-
+            Attendee  = await _userManager.GetUsersInRoleAsync("Attendee");
+            Organizer = await _userManager.GetUsersInRoleAsync("Organizer");
+            Admin     = await _userManager.GetUsersInRoleAsync("Admin");
 
         }
     }
