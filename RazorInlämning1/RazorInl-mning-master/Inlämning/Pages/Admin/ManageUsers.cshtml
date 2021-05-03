@@ -4,17 +4,18 @@
 }
 
 <div class="text-center">
-    <div>
+   
         <div>
-            <h1>Attendees</h1>
+            <h1>Users!</h1>
         </div>
-    </div>
+
     <table class="table">
         <thead>
             <tr>
                 <th>UserName</th>
                 <th>Id</th>
                 <th>Email</th>
+                <th>Organizer?</th>
             </tr>
         </thead>
         <tbody>
@@ -24,23 +25,10 @@
                     <td>@item.UserName</td>
                     <td>@item.Id</td>
                     <td>@item.Email</td>
-                    <td></td>
+                    <td><input type="checkbox" id="vehicle1" name="" value="" ></td>
                 </tr>
             }
         </tbody>
-    </table> 
-    <div>
-        <h1>Organizer</h1>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>UserName</th>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Host</th>
-            </tr>
-        </thead>
         <tbody>
             @foreach (var item in Model.Organizer)
             {
@@ -48,38 +36,12 @@
                     <td>@item.UserName</td>
                     <td>@item.Id</td>
                     <td>@item.Email</td>
-                    <td>@item.HostedEvents</td>
+                    <td><input type="checkbox" id="vehicle1" name="" value="" checked></td>
                 </tr>
             }
         </tbody>
-    </table>
-    <div>
-        <h1> Admin</h1>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>UserName</th>
-                <th>Id</th>
-                <th>Email</th>
-               
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Admin)
-            {
-                <tr>
-                    <td>@item.UserName</td>
-                    <td>@item.Id</td>
-                    <td>@item.Email</td>
-                    <td></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
-
+    </table> 
+ </div>
 
 
 

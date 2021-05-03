@@ -28,19 +28,18 @@ namespace Inlämning.Pages.Admin
         }
 
    
-
-        public IList<User> Attendee { get; set; }
         public IList<User> Organizer { get; set; }
-        public IList<User> Admin { get; set; }
-
+        public IList<User> Attendee { get; set; }
         public string Roles { get; set; }
 
         public async Task OnGetAsync()
         {
 
-            Attendee  = await _userManager.GetUsersInRoleAsync("Attendee");
+            Attendee = await _userManager.GetUsersInRoleAsync("Attendee");
             Organizer = await _userManager.GetUsersInRoleAsync("Organizer");
-            Admin     = await _userManager.GetUsersInRoleAsync("Admin");
+
+
+
 
         }
     }
