@@ -49,6 +49,14 @@ namespace Inlämning
             })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<InlämningContext>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/NotAllowed";
+                options.LoginPath = "/Login";
+
+
+            });
                 
 
 

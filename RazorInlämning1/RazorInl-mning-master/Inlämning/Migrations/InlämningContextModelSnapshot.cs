@@ -368,7 +368,7 @@ namespace Inlämning.Migrations
 
                     b.Navigation("Roles");
                 });
-
+#pragma warning restore 612, 618
         }
     }
 }

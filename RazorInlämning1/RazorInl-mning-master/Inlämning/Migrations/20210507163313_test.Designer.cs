@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inlämning.Migrations
 {
     [DbContext(typeof(InlämningContext))]
-    [Migration("20210428090934_new")]
-    partial class @new
+    [Migration("20210507163313_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

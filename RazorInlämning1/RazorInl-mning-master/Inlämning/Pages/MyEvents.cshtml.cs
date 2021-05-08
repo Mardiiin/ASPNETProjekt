@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Inlämning.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Inlämning.Data;
-using Inlämning.Models;
-using Microsoft.AspNetCore.Authorization;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Inlämning.Pages
 {
     [Authorize]
     public class MyEventsModel : PageModel
     {
-        
+
         private readonly Inlämning.Data.InlämningContext _context;
 
         public MyEventsModel(Inlämning.Data.InlämningContext context)
@@ -25,30 +24,25 @@ namespace Inlämning.Pages
         public IList<Event> Event { get; set; }
         public string Message { get; set; }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+
+
+        public async Task OnGetAsync()
         {
-            /*
-            var attendee = await _context.Attendees.Where(a => a.AttendeeID == 1).Include(e => e.Events).FirstOrDefaultAsync();
+            var myUser = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var leaveEvent = await _context.Events.Where(e => e.EventID == id).FirstOrDefaultAsync();
+            var attendee = await _context.Users.Where(x => x.Id == myUser).Include(b => b.JoinedEvents).SingleOrDefaultAsync();
 
-            leaveEvent.SpotsAvailable++;
+            foreach(var x in attendee.JoinedEvents)
+            {
+                Event = await _context.Events.Where(y => y.Id == x.Id).Include(o => o.Organizer).ToListAsync();
 
-            attendee.Events.Remove(leaveEvent);
-            await _context.SaveChangesAsync();
-            */
-            return RedirectToPage($"/MyEvents", $"You have left the event: ");
-            
-        }
-        public void OnGetAsync(string handler = "")
-        {
-            /*
-            Attendee = _context.Attendees.Where(a => a.AttendeeID == 1).Include(e => e.Events).FirstOrDefault();
+            }
 
-            Message = handler;
+            Event = attendee.JoinedEvents;
 
-            Event = Attendee.Events;
-            */
+
+
+
 
         }
     }

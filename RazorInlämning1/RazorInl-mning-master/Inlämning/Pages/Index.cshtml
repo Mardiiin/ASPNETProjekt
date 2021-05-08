@@ -8,32 +8,10 @@
 }
 
 <div class="text-center">
-
-    @if (User.IsInRole("Organizer"))
-    {
-        <h1> Welcome Organizer! User:@Model.userName</h1>
-        <a type="button" asp-area="" asp-page="/Organizer/AddEvent" class="btn btn-primary btn-lg">Add Event</a>
-        <a type="button" asp-area="" asp-page="/Organizer/OrganizeEvents" class="btn btn-primary btn-lg">Organize events</a>
-        <a type="button" asp-area="" asp-page="/LogOut" class="btn btn-primary btn-lg">Log out</a>
-    }
-
-    else if (User.IsInRole("Admin"))
-    {
-
-        <h1> Welcome Admin! User: @Model.userName</h1>
-        <a type="button" asp-area="" asp-page="/Admin/ManageUsers" class="btn btn-primary btn-lg">ManageUsers</a>
-        <a type="button" asp-area="" asp-page="/LogOut" class="btn btn-primary btn-lg">Log out</a>
-    }
-
-    else
-    {
-         <h1 class="display-4">Welcome!</h1>@if (User.Identity.IsAuthenticated)
-         { <h1>User: @Model.userName </h1>}
+         <h1 class="display-4">Welcome!</h1>
         <p> On this website you can find a number of events!</p>
         <p> Feel free to join an event you find interesting.</p>
         <a type="button" asp-area="" asp-page="/Login" class="btn btn-primary btn-lg">Login</a>
         <a type="button" asp-area="" asp-page="/Register" class="btn btn-primary btn-lg">Sign Up</a>
         <a type="button" asp-area="" asp-page="/LogOut" class="btn btn-primary btn-lg">Log out</a>
-
-    }
 </div>

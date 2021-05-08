@@ -1,67 +1,56 @@
 ﻿@page
 @model Inlämning.Pages.Admin.ManageUsersModel
+@using Microsoft.AspNetCore.Identity;
+@using Inlämning.Models;
+@using Microsoft.AspNetCore.Authorization;
+@inject UserManager<User> userManager
 @{
 }
 
 <div class="text-center">
-   
+
+    <div>
+        <h1>Users!</h1>
+    </div>
+
+    <div class="text-center">
+
         <div>
             <h1>Users!</h1>
         </div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>UserName</th>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Organizer?</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Attendee)
-            {
-                <tr>
-                    <td>@item.UserName</td>
-                    <td>@item.Id</td>
-                    <td>@item.Email</td>
-                    <td><input type="checkbox"  name="" value="" ></td>
-                </tr>
-            }
-        </tbody>
-        <tbody>
-            @foreach (var item in Model.Organizer)
-            {
-                <tr>
-                    <td>@item.UserName</td>
-                    <td>@item.Id</td>
-                    <td>@item.Email</td>
-                    <td><input type="checkbox"  name="" value="" checked></td>
-                </tr>
-            }
-        </tbody>
-    </table> 
+        <form method="post">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>UserName</th>
+                        <th>Id</th>
+                        <th>Email</th>
+                        <th>Organizer?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Attendee)
+                    {
+                        <tr>
+                            <td>@item.UserName</td>
+                            <td>@item.Id</td>
+                            <td>@item.Email</td>
+                            <td><input type="checkbox" onchange="this.form.submit(@item.Id)" name="" value=""></td>
+                        </tr>
+                    }
+                </tbody>
+                <tbody>
+                    @foreach (var item in Model.Organizer)
+                    {
+                        <tr>
+                            <td>@item.UserName</td>
+                            <td>@item.Id</td>
+                            <td>@item.Email</td>
+                            <td><input type="checkbox" name=""  onchange="this.form.submit(@item.Id)" checked></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+    </div>
  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

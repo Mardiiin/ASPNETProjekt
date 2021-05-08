@@ -15,7 +15,10 @@ namespace Inlämning.Models
         public string Place { get; set; }
         public DateTime Date { get; set; }
         public int SpotsAvailable { get; set; }
+
+
         public List<User> Attendees { get; set; }
+
         public User Organizer { get; set; }
 
 
