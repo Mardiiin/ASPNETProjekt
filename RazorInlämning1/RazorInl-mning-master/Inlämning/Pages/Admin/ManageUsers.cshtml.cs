@@ -43,8 +43,6 @@ namespace Inlämning.Pages.Admin
             Organizer = await _userManager.GetUsersInRoleAsync("Organizer");
 
 
-
-
         }
 
 
@@ -52,6 +50,7 @@ namespace Inlämning.Pages.Admin
 
 
         public async Task <IActionResult> OnPostAsync(string user)
+        
         {
             
                 var userx = await _userManager.FindByIdAsync(user);

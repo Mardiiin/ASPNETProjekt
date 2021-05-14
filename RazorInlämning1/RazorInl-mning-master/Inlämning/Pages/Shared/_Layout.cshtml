@@ -33,30 +33,36 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/MyEvents">My events</a>
                         </li>
-                        <li class="nav-item">
-                            @{ if (User.Identity.IsAuthenticated)
-                                {
-                                    IdentityUser user = await UserManager.GetUserAsync(User);
+                        @{ if (User.Identity.IsAuthenticated)
+                            {
+                                IdentityUser user = await UserManager.GetUserAsync(User);
+                                <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Index">User:@User.Identity.Name</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a type="button" asp-area="" asp-page="/Login" class="btn btn-primary btn-lg">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a type="button" asp-area="" asp-page="/LogOut" class="btn btn-primary btn-lg">Log out</a>
+                                </li>
                                 }
-                            }
-                        </li>
-                        @if (User.IsInRole("Organizer"))
-                        {
-                            <li class="nav-item">
-                                <a type="button" asp-area="" asp-page="/Organizer/AddEvent" class="btn btn-primary btn-lg">Add Event</a>
-                            </li>
-                            <li class="nav-item">
-                                <a type="button" asp-area="" asp-page="/Organizer/OrganizeEvents" class="btn btn-primary btn-lg">Organize events</a>
-                            </li>
-                        }
-                        else if (User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item">
-                                <a type="button" asp-area="" asp-page="/Admin/ManageUsers" class="btn btn-primary btn-lg">ManageUsers</a>
-                            </li>
+                                }                              
+                                @if (User.IsInRole("Organizer"))
+                                {
+                                    <li class="nav-item">
+                                        <a type="button" asp-area="" asp-page="/Organizer/AddEvent" class="btn btn-primary btn-lg">Add Event</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a type="button" asp-area="" asp-page="/Organizer/OrganizeEvents" class="btn btn-primary btn-lg">Organize events</a>
+                                    </li>
                                 }
-                        </ul>
+                                else if (User.IsInRole("Admin"))
+                                {
+                                    <li class="nav-item">
+                                        <a type="button" asp-area="" asp-page="/Admin/ManageUsers" class="btn btn-primary btn-lg">ManageUsers</a>
+                                    </li>
+                                }
+                            </ul>
                 </div>
             </div>
         </nav>
