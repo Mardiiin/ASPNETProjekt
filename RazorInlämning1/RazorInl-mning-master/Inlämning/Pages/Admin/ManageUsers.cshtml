@@ -8,45 +8,89 @@
 }
 
 <div class="text-center">
-    <div class="text-center">
-
-        <div>
-            <h1>Users!</h1>
-        </div>
-        <form method="post">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>UserName</th>
-                        <th>Id</th>
-                        <th>Email</th>
-                        <th>Organizer?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Attendee)
-                    {
-                    <tr>
-                        <td>@item.UserName</td>
-                        <td>@item.Id</td>
-                        <td>@item.Email</td>
-                        <td>><input type="hidden" name="id" value="3" /></td
-                        <td><input type="checkbox" onclick="this.form.submit(@item.Id)" name=""></td>
-                    </tr>
-                    }
-                </tbody>
-                <tbody>
-                    @foreach (var item in Model.Organizer)
-                    {
-                    <tr>
-                        <td>@item.UserName</td>
-                        <td>@item.Id</td>
-                        <td>@item.Email</td>
-                        <td><input type="checkbox" name="" onclick="this.form.submit(@item.Id)" checked ></td>
-                    </tr>
-                    }
-                </tbody>
-            </table>
-        </form>
+    <div>
+        <h1>Role: Attendee</h1>
     </div>
- </div>
+    <form method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>UserName</th>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Change Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Attendee)
+                {
+                    <tr>
+                        <td>@item.UserName</td>
+                        <td>@item.Id</td>
+                        <td>@item.Email</td>
+                        <td>
+                            <input type="hidden" value="@item.Id" name="id" />
+                            <input id="hi" class="hidden-field" type="checkbox" onclick="this.form.submit();" name="hi" />
+                        </td>
+
+
+                    </tr>
+                }
+        </table>
+    </form>
+    <div>
+        <h1>Role: Organizer</h1>
+    </div>
+
+    <form method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>UserName</th>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Change Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Organizer)
+                {
+                    <tr>
+                        <td>@item.UserName</td>
+                        <td>@item.Id</td>
+                        <td>@item.Email</td>
+                        <td>
+                            <input type="hidden" value="@item.Id" name="id" />
+                            <input id="hi" class="hidden-field" type="checkbox" onclick="this.form.submit();" name="hi" />
+                        </td>
+
+
+                    </tr>
+                }
+        </table>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

@@ -39,7 +39,7 @@ namespace Inlämning.Pages
             }
             else
             {
-                return RedirectToPage();
+                return RedirectToPage("/index");
             }
 
         }

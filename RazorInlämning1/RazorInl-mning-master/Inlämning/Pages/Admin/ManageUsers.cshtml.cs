@@ -30,10 +30,12 @@ namespace Inlämning.Pages.Admin
            
         }
 
-
+        [BindProperty]
         public IList<User> Organizer { get; set; }
+
         public IList<User> Attendee { get; set; }
-        public bool x { get; set; } 
+        [BindProperty]
+        public string userx { get; set; } 
 
 
         public async Task OnGetAsync()
@@ -46,21 +48,21 @@ namespace Inlämning.Pages.Admin
         }
 
 
-        public string Message { get; set; }
-
-
-        public async Task <IActionResult> OnPostAsync(string user)
-        
+        public async Task<IActionResult> OnPostAsync(IdentityUser<string> user)
         {
-            
-                var userx = await _userManager.FindByIdAsync(user);
+        
+            Attendee = await _userManager.GetUsersInRoleAsync("Attendee");
+            Organizer = await _userManager.GetUsersInRoleAsync("Organizer");
 
+            var userx = await _userManager.FindByIdAsync(user.Id);
+            
             if (await _userManager.IsInRoleAsync(userx, ("Organizer")))
             {
 
                 await _userManager.RemoveFromRoleAsync(userx, "Organizer");
                 await _userManager.AddToRoleAsync(userx, "Attendee");
-                return Page();
+
+                return RedirectToPage("/Admin/ManageUsers");
             }
             else if (await _userManager.IsInRoleAsync(userx, ("Attendee")))
             {
@@ -68,13 +70,13 @@ namespace Inlämning.Pages.Admin
                 await _userManager.RemoveFromRoleAsync(userx, "Attendee");
                 await _userManager.AddToRoleAsync(userx, "Organizer");
 
-                return Page();
+                return RedirectToPage("/Admin/ManageUsers");
 
 
             }
-            else
+            else 
             {
-                return Page();
+                return RedirectToPage("/Admin/ManageUsers");
             }
 
         }
